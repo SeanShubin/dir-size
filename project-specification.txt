@@ -1,0 +1,34 @@
+{
+  prefix [com seanshubin]
+  name [dirsize]
+  description 'Sort directories by size of their contents'
+  version 0.1-SNAPSHOT
+  developer {
+    name 'Sean Shubin'
+    githubName SeanShubin
+    mavenUserName SeanShubin
+    organization 'Sean Shubin'
+    url http://seanshubin.com/
+  }
+  dependencies {
+    scala-library {
+      group    org.scala-lang
+      artifact scala-library
+    }
+    scala-test {
+      group    org.scalatest
+      artifact scalatest_2.12
+      scope    test
+    }
+  }
+  global [scala-library scala-test]
+  modules {
+    console         [domain]
+    domain          []
+  }
+  detangler [console]
+  consoleEntryPoint {
+    console com.seanshubin.dirsize.console.EntryPoint
+  }
+}
+
