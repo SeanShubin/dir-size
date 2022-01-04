@@ -6,4 +6,6 @@ trait Notifications {
   def notifyReport(report:Report):Unit
   def notifyDuration(start:Long, end:Long):Unit
   def lookingAt(path:Path, depth:Int):Unit
+  def notDirectoryOrFile(path:Path):Unit
+  def unableToListDir(path:Path):Unit
 }

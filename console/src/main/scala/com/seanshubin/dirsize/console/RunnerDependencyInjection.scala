@@ -16,7 +16,13 @@ trait RunnerDependencyInjection {
   val fireReportEvent:Report => Unit = notifications.notifyReport
   val fireDurationEvent:(Long, Long) => Unit = notifications.notifyDuration
   val lookingAt:(Path, Int) => Unit = notifications.lookingAt
-  val reportBuilder:ReportBuilder = new TreeReportBuilder(files, lookingAt)
+  val accept:Path => Boolean = IgnoreLibrary
+  val reportBuilder:ReportBuilder = new TreeReportBuilder(
+    files,
+    accept,
+    lookingAt,
+    notifications.notDirectoryOrFile,
+    notifications.unableToListDir)
   val system:SystemContract = SystemDelegate
   val runner:Runnable = new DirSizeRunner(targetDir, reportBuilder, fireReportEvent, fireDurationEvent, system)
 }

@@ -52,15 +52,6 @@ object SystemDelegate extends SystemContract {
 
   override def mapLibraryName(libname: String): String = System.mapLibraryName(libname)
 
-  @deprecated(
-    message =
-      "This method is inherently unsafe.  It may result in" +
-        "finalizers being called on live objects while other threads are" +
-        "concurrently manipulating those objects, resulting in erratic" +
-        "behavior or deadlock.",
-    since = "JDK1.1")
-  override def runFinalizersOnExit(value: Boolean): Unit = System.runFinalizersOnExit(value)
-
   override def out: PrintStream = System.out
 
   override def inheritedChannel: Channel = System.inheritedChannel()

@@ -11,4 +11,6 @@ object FileType {
   lazy val values: Seq[FileType] = valuesBuffer
   val RegularFile: FileType = new FileType("file") {}
   val Directory: FileType = new FileType("directory") {}
+  val Unknown: FileType = new FileType("unknown"){}
+  val SymbolicLink:FileType = new FileType("symbolic-link"){}
 }

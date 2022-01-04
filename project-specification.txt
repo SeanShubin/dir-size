@@ -3,6 +3,7 @@
   name [dirsize]
   description 'Sort directories by size of their contents'
   version 0.1-SNAPSHOT
+  language scala
   developer {
     name 'Sean Shubin'
     githubName SeanShubin
@@ -30,5 +31,6 @@
   consoleEntryPoint {
     console com.seanshubin.dirsize.console.EntryPoint
   }
+  javaVersion 12
 }
 

@@ -10,6 +10,8 @@ class LineEmittingNotifications(emit: String => Unit,
                                 minSize:Long,
                                 charset: Charset,
                                 files:FilesContract) extends Notifications {
+  private val reportDir = reportPath.getParent
+  files.createDirectories(reportDir)
   override def notifyReport(report: Report): Unit = {
     val tableRows = report.rows.filter(_.size >= minSize).sorted(ReportRow.SizeDescendingPathAscending).map(reportRowToTableRow)
     val tableLines = TableUtil.createTable(tableRows)
@@ -28,6 +30,15 @@ class LineEmittingNotifications(emit: String => Unit,
     if(depth < 4){
       emit(path.toString)
     }
+  }
+
+
+  override def notDirectoryOrFile(path: Path): Unit ={
+    emit(s"WARNING: '$path' us not a directory or file")
+  }
+
+  override def unableToListDir(path: Path): Unit = {
+    emit(s"WARNING: unable to list $path")
   }
 
   private def reportRowToTableRow(reportRow: ReportRow): Seq[Any] = {
